@@ -90,7 +90,8 @@ void HistoryViewCell::layoutSubviews() {
   if (inputSize.width() + Metric::HistoryHorizontalMargin > width) {
     m_inputView.setFrame(KDRect(Metric::HistoryHorizontalMargin, k_digitVerticalMargin, width - Metric::HistoryHorizontalMargin, inputSize.height()));
   } else {
-    m_inputView.setFrame(KDRect(Metric::HistoryHorizontalMargin, k_digitVerticalMargin, inputSize.width(), inputSize.height()));
+    //m_inputView.setFrame(KDRect(Metric::HistoryHorizontalMargin, k_digitVerticalMargin, inputSize.width(), inputSize.height()));
+    m_inputView.setFrame(KDRect(width - inputSize.width() - Metric::HistoryHorizontalMargin, k_digitVerticalMargin, inputSize.width(), inputSize.height()));
   }
   KDSize outputSize = m_scrollableOutputView.minimalSizeForOptimalDisplay();
   if (outputSize.width() + Metric::HistoryHorizontalMargin > width) {
@@ -128,33 +129,33 @@ void HistoryViewCell::setCalculation(Calculation * calculation) {
 }
 
 void HistoryViewCell::didBecomeFirstResponder() {
-  if (m_selectedSubviewType == SubviewType::Input) {
-    app()->setFirstResponder(&m_inputView);
-  } else {
+  //if (m_selectedSubviewType == SubviewType::Input) {
+  //  app()->setFirstResponder(&m_inputView);
+  //} else {
     app()->setFirstResponder(&m_scrollableOutputView);
-  }
+  //}
 }
 
 HistoryViewCell::SubviewType HistoryViewCell::selectedSubviewType() {
   return m_selectedSubviewType;
 }
 
-void HistoryViewCell::setSelectedSubviewType(HistoryViewCell::SubviewType subviewType) {
-  m_selectedSubviewType = subviewType;
-  setHighlighted(isHighlighted());
-}
+//void HistoryViewCell::setSelectedSubviewType(HistoryViewCell::SubviewType subviewType) {
+//  m_selectedSubviewType = subviewType;
+//  setHighlighted(isHighlighted());
+//}
 
 bool HistoryViewCell::handleEvent(Ion::Events::Event event) {
-  if ((event == Ion::Events::Down && m_selectedSubviewType == SubviewType::Input) ||
-    (event == Ion::Events::Up && m_selectedSubviewType == SubviewType::Output)) {
-    SubviewType otherSubviewType = m_selectedSubviewType == SubviewType::Input ? SubviewType::Output : SubviewType::Input;
-    CalculationSelectableTableView * tableView = (CalculationSelectableTableView *)parentResponder();
-    tableView->scrollToSubviewOfTypeOfCellAtLocation(otherSubviewType, tableView->selectedColumn(), tableView->selectedRow());
-    HistoryViewCell * selectedCell = (HistoryViewCell *)(tableView->selectedCell());
-    selectedCell->setSelectedSubviewType(otherSubviewType);
-    app()->setFirstResponder(selectedCell);
-    return true;
-  }
+  //if ((event == Ion::Events::Down && m_selectedSubviewType == SubviewType::Input) ||
+  //  (event == Ion::Events::Up && m_selectedSubviewType == SubviewType::Output)) {
+  //  SubviewType otherSubviewType = m_selectedSubviewType == SubviewType::Input ? SubviewType::Output : SubviewType::Input;
+  //  CalculationSelectableTableView * tableView = (CalculationSelectableTableView *)parentResponder();
+  //  tableView->scrollToSubviewOfTypeOfCellAtLocation(otherSubviewType, tableView->selectedColumn(), tableView->selectedRow());
+  //  HistoryViewCell * selectedCell = (HistoryViewCell *)(tableView->selectedCell());
+  //  selectedCell->setSelectedSubviewType(otherSubviewType);
+  //  app()->setFirstResponder(selectedCell);
+  //  return true;
+  //}
   return false;
 }
 

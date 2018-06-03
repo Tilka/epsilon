@@ -119,13 +119,13 @@ void HistoryController::tableViewDidChangeSelection(SelectableTableView * t, int
   if (selectedCell == nullptr) {
     return;
   }
-  if (previousSelectedCellY == -1) {
-    selectedCell->setSelectedSubviewType(HistoryViewCell::SubviewType::Output);
-  } else if (selectedRow() < previousSelectedCellY) {
-    selectedCell->setSelectedSubviewType(HistoryViewCell::SubviewType::Output);
-  } else if (selectedRow() > previousSelectedCellY) {
-    selectedCell->setSelectedSubviewType(HistoryViewCell::SubviewType::Input);
-  }
+  //if (previousSelectedCellY == -1) {
+  //  selectedCell->setSelectedSubviewType(HistoryViewCell::SubviewType::Output);
+  //} else if (selectedRow() < previousSelectedCellY) {
+  //  selectedCell->setSelectedSubviewType(HistoryViewCell::SubviewType::Output);
+  //} else if (selectedRow() > previousSelectedCellY) {
+  //  selectedCell->setSelectedSubviewType(HistoryViewCell::SubviewType::Input);
+  //}
   app()->setFirstResponder(selectedCell);
   selectedCell->reloadCell();
 }

@@ -32,7 +32,7 @@ public:
   bool handleEvent(Ion::Events::Event event) override;
   constexpr static KDCoordinate k_digitVerticalMargin = 5;
   SubviewType selectedSubviewType();
-  void setSelectedSubviewType(HistoryViewCell::SubviewType subviewType);
+  //void setSelectedSubviewType(HistoryViewCell::SubviewType subviewType);
   OutputExpressionsView * outputView();
 private:
   constexpr static KDCoordinate k_resultWidth = 80;

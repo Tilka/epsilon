@@ -15,8 +15,9 @@ bool ExpressionField::handleEvent(Ion::Events::Event event) {
        event == Ion::Events::Plus ||
        event == Ion::Events::Power ||
        event == Ion::Events::Square ||
-       event == Ion::Events::Division ||
-       event == Ion::Events::Sto)) {
+       //event == Ion::Events::Division ||
+       //event == Ion::Events::Sto)) {
+       event == Ion::Events::Division)) {
     handleEventWithText("ans");
   }
   return(::ExpressionField::handleEvent(event));
